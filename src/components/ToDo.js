@@ -29,7 +29,7 @@ const ToDo = () => {
                                     </div>
                                 </a>
                             </div>
-                            <button onclick="popuphandler(true)" className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+                            <button onClick="popuphandler(true)" className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
                                 <p className="text-sm font-medium leading-none text-white">Add Task</p>
                             </button>
                         </div>
@@ -53,13 +53,13 @@ const ToDo = () => {
                                         <td>
                                             <div className="relative px-5 pt-2">
                                                 {show == 9 ? (
-                                                    <button className="focus:outline-none" onClick={() => setShow(null)}>
+                                                    <div className="focus:outline-none" onClick={() => setShow(null)}>
                                                         <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </button>
+                                                    </div>
                                                 ) : (
-                                                    <button className="focus:outline-none" onClick={() => setShow(9)}>
+                                                    <div className="focus:outline-none" onClick={() => setShow(9)}>
                                                         <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </button>
+                                                    </div>
                                                 )}
                                                 {show == 9 && (
                                                     <div className="dropdown-content bg-white shadow w-full absolute z-30 right-0 mr-6 ">
@@ -93,13 +93,13 @@ const ToDo = () => {
                                         <td>
                                             <div className="relative px-5 pt-2">
                                                 {show == 8 ? (
-                                                    <button className="focus:outline-none" onClick={() => setShow(null)}>
+                                                    <div className="focus:outline-none" onClick={() => setShow(null)}>
                                                         <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </button>
+                                                    </div>
                                                 ) : (
-                                                    <button className="focus:outline-none" onClick={() => setShow(9)}>
+                                                    <div className="focus:outline-none" onClick={() => setShow(9)}>
                                                         <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </button>
+                                                    </div>
                                                 )}
                                                 {show == 8 && (
                                                     <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 ">
