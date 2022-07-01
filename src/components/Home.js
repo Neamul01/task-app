@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
     const [sidebar, setsidebar] = useState();
@@ -6,7 +6,18 @@ const Home = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('submit', e.task)
+        const inputValue = e.target.task.value
+
+        fetch('http://localhost:5000/tasks', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ 'inputValue': inputValue })
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+
     }
 
     return (
