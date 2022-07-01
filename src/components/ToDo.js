@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ToDo = () => {
-
     const [show, setShow] = useState(null);
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/tasks')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setTasks(data)
+            })
+    }, [])
+
     return (
         <>
             <div>
@@ -36,88 +46,46 @@ const ToDo = () => {
                         <div className="mt-7 overflow-x-auto">
                             <table className="w-full whitespace-nowrap">
                                 <tbody>
-                                    <tr className="h-16 border border-gray-100 rounded">
-                                        <td>
-                                            <div className="ml-5">
-                                                <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                                                    <input type="checkbox" className=" w-full h-full" />
+                                    {
+                                        tasks.map((task, index) => <tr key={index} className="h-16 border border-gray-100 rounded">
+                                            <td>
+                                                <div className="ml-5">
+                                                    <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
+                                                        <input type="checkbox" className=" w-full h-full" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td className>
-                                            <div className="flex items-center pl-5">
-                                                <p className="text-base font-medium leading-none text-gray-700 mr-2">Marketing Keynote Presentation</p>
+                                            </td>
+                                            <td className>
+                                                <div className="flex items-center pl-5">
+                                                    <p className="text-base font-medium leading-none text-gray-700 mr-2">{task.inputValue}</p>
 
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="relative px-5 pt-2">
-                                                {show == 9 ? (
-                                                    <div className="focus:outline-none" onClick={() => setShow(null)}>
-                                                        <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </div>
-                                                ) : (
-                                                    <div className="focus:outline-none" onClick={() => setShow(9)}>
-                                                        <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </div>
-                                                )}
-                                                {show == 9 && (
-                                                    <div className="dropdown-content bg-white shadow w-full absolute z-30 right-0 mr-6 ">
-                                                        <div className="text-xs w-full py-4 px-4 cursor-pointer hover:text-white">
-                                                            <input aria-label="task" name='task' type="text" placeholder='Update Task' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
-                                                        </div>
-                                                        <div className="text-sm w-full cursor-pointer hover:text-white">
-                                                            <p className='hover:bg-indigo-700 py-4 mx-4 rounded '>Update</p>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr className="h-3" />
-
-                                    <tr className="h-16 border border-gray-100 rounded">
-                                        <td>
-                                            <div className="ml-5">
-                                                <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                                                    <input type="checkbox" className=" w-full h-full" />
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td className>
-                                            <div className="flex items-center pl-5">
-                                                <p className="text-base font-medium leading-none text-gray-700 mr-2">Marketing Keynote Presentation</p>
-
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="relative px-5 pt-2">
-                                                {show == 8 ? (
-                                                    <div className="focus:outline-none" onClick={() => setShow(null)}>
-                                                        <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </div>
-                                                ) : (
-                                                    <div className="focus:outline-none" onClick={() => setShow(9)}>
-                                                        <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                    </div>
-                                                )}
-                                                {show == 8 && (
-                                                    <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 ">
-                                                        <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                                                            <p>Edit</p>
+                                            </td>
+                                            <td>
+                                                <div className="relative px-5 pt-2">
+                                                    {show === index ? (
+                                                        <div className="focus:outline-none" onClick={() => setShow(null)}>
+                                                            <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
                                                         </div>
-                                                        <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                                                            <p>Delete</p>
+                                                    ) : (
+                                                        <div className="focus:outline-none" onClick={() => setShow(index)}>
+                                                            <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
                                                         </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr className="h-3" />
-
-
-
+                                                    )}
+                                                    {show === index && (
+                                                        <div className="dropdown-content bg-white shadow w-full absolute z-30 right-0 mr-6 ">
+                                                            <div className="text-xs w-full py-4 px-4 cursor-pointer hover:text-white">
+                                                                <input aria-label="task" name='task' type="text" placeholder='Update Task' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                                            </div>
+                                                            <div className="text-sm w-full cursor-pointer hover:text-white">
+                                                                <p className='hover:bg-indigo-700 bg-gray-300 py-3 mx-4 rounded '>Update</p>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </td>
+                                        </tr>)
+                                    }
                                 </tbody>
                             </table>
                         </div>
