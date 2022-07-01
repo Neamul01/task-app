@@ -237,9 +237,9 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/*Mobile responsive sidebar*/}
-                    <div className={show ? "w-full md:hidden h-full absolute z-40  transform  translate-x-0 " : "   w-full md:hidden h-full absolute z-40  transform -translate-x-full"}>
+                    <div className={show ? "w-full md:hidden h-full absolute z-50  transform  translate-x-0 " : "   w-full md:hidden h-full absolute z-40  transform -translate-x-full"}>
                         <div className="bg-gray-800 opacity-50 w-full h-full" onClick={() => setShow(!show)} />
-                        <div className="w-64 fixed overflow-y-auto z-40 top-0 bg-white shadow h-full flex-col justify-between md:hidden pb-4 transition duration-150 ease-in-out">
+                        <div className="w-64 fixed overflow-y-auto z-50 top-0 bg-white shadow h-full flex-col justify-between md:hidden pb-4 transition duration-150 ease-in-out">
                             <div className="px-6 h-full">
                                 <div className="flex flex-col justify-between h-full w-full">
                                     <div>
@@ -278,7 +278,7 @@ const Navbar = () => {
                                                                 <rect x={14} y={14} width={6} height={6} rx={1} />
                                                             </svg>
                                                         </div>
-                                                        <p className="text-indigo-700 xl:text-base text-base ml-3">Dashboard</p>
+                                                        <Link to={'/todo'} className="text-indigo-700 xl:text-base text-base ml-3">To-Do</Link>
                                                     </div>
                                                 </li>
                                             </a>

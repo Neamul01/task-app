@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Home = () => {
     const [sidebar, setsidebar] = useState();
+    const [show, setShow] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -20,6 +21,17 @@ const Home = () => {
                         <input type='submit' className=" cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full" />
                     </div>
                 </form>
+                <div className="flex justify-center items-center h-16 border border-gray-100 rounded">
+                    <div className="ml-5">
+                        <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center pl-5">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">Marketing Keynote Presentation</p>
+
+                    </div>
+                </div>
             </div>
         </div>
     );

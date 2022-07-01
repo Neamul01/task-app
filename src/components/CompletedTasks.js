@@ -39,7 +39,7 @@ const CompletedTasks = () => {
                                         <td>
                                             <div className="ml-5">
                                                 <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                                                    <input type="checkbox" className=" w-full h-full" />
+                                                    <input type="checkbox" checked className=" w-full h-full" />
                                                 </div>
                                             </div>
                                         </td>
@@ -66,7 +66,7 @@ const CompletedTasks = () => {
                                                             <input aria-label="task" name='task' type="text" placeholder='Update Task' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                                         </div>
                                                         <div className="text-sm w-full cursor-pointer hover:text-white">
-                                                            <p className='hover:bg-indigo-700 py-4 mx-4 rounded '>Update</p>
+                                                            <p className='hover:bg-indigo-700 bg-gray-300 py-3 mx-4 rounded '>Update</p>
                                                         </div>
                                                     </div>
                                                 )}
@@ -79,7 +79,7 @@ const CompletedTasks = () => {
                                         <td>
                                             <div className="ml-5">
                                                 <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                                                    <input type="checkbox" className=" w-full h-full" />
+                                                    <input type="checkbox" checked className=" w-full h-full" />
                                                 </div>
                                             </div>
                                         </td>

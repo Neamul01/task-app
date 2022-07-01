@@ -7,10 +7,10 @@ const Footer = () => {
 
     return (
         <div className="pt-12">
-            <footer id="footer" className="relative z-50 dark:bg-gray-900 pt-24">
+            <footer id="footer" className=" z-10 dark:bg-gray-900">
                 <div className=" border-t border-b border-gray-200 dark:border-gray-700 py-16">
 
-                    <div className="pb-8 flex flex-col justify-center items-center">
+                    <div className="pb-8 flex flex-col z-10 justify-center items-center">
                         <a href="#!">
                             <p href='#!' className='text-3xl font-semibold'>
                                 Task Manager
@@ -33,7 +33,7 @@ const Footer = () => {
                             </a>
                         </div>
                         <div className="w-full lg:w-1/2 px-6">
-                            <ul className='flex justify-between items-center'>
+                            <ul className='flex md:flex-row flex-col gap-3 justify-between items-center'>
                                 <li>
                                     <a href="#!">
                                         <p className="text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50">To-Do</p>
