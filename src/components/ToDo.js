@@ -13,6 +13,20 @@ const ToDo = () => {
             })
     }, [])
 
+    const handleCompletedTask = (_id) => {
+        console.log('completed..', _id)
+        fetch(`http://localhost:5000/tasks/${_id}`, {
+            method: 'put',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
     return (
         <>
             <div>
@@ -51,7 +65,7 @@ const ToDo = () => {
                                             <td>
                                                 <div className="ml-5">
                                                     <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                                                        <input type="checkbox" className=" w-full h-full" />
+                                                        <input onChange={() => handleCompletedTask(task._id)} type="checkbox" className=" w-full h-full" />
                                                     </div>
                                                 </div>
                                             </td>
