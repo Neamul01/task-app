@@ -7,7 +7,7 @@ const Home = () => {
         e.preventDefault()
         const inputValue = e.target.task.value
 
-        fetch('http://localhost:5000/tasks', {
+        fetch('https://task-manager-68466.herokuapp.com/tasks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -15,12 +15,12 @@ const Home = () => {
             body: JSON.stringify({ 'inputValue': inputValue })
         })
             .then(res => res.json())
-            .then(data => console.log('successfully added'))
+            .then(data => { })
 
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/tasks')
+        fetch('https://task-manager-68466.herokuapp.com/tasks')
             .then(res => res.json())
             .then(data => {
                 setTasks(data)

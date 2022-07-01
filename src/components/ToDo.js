@@ -6,7 +6,7 @@ const ToDo = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/tasks')
+        fetch('https://task-manager-68466.herokuapp.com/tasks')
             .then(res => res.json())
             .then(data => {
                 setTasks(data)
@@ -14,8 +14,7 @@ const ToDo = () => {
     }, [])
 
     const handleCompletedTask = (_id) => {
-        console.log('completed..', _id)
-        fetch(`http://localhost:5000/tasks/${_id}`, {
+        fetch(`https://task-manager-68466.herokuapp.com/tasks/${_id}`, {
             method: 'put',
             headers: {
                 'content-type': 'application/json'
@@ -23,15 +22,13 @@ const ToDo = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
             })
     }
 
     const handleUpdateData = (e, id) => {
         e.preventDefault()
         const updatedTask = e.target.updatedTask.value
-        console.log(updatedTask, id)
-        fetch(`http://localhost:5000/updatedTask/${id}`, {
+        fetch(`https://task-manager-68466.herokuapp.com/updatedTask/${id}`, {
             method: 'put',
             headers: {
                 'content-type': 'application/json'
@@ -40,7 +37,6 @@ const ToDo = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
             })
     }
 

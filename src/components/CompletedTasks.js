@@ -5,7 +5,7 @@ const CompletedTasks = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/tasks')
+        fetch('https://task-manager-68466.herokuapp.com/tasks')
             .then(res => res.json())
             .then(data => {
                 setTasks(data)
