@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ToDo = () => {
     const [show, setShow] = useState(null);
@@ -8,7 +9,6 @@ const ToDo = () => {
         fetch('http://localhost:5000/tasks')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setTasks(data)
             })
     }, [])
@@ -20,6 +20,23 @@ const ToDo = () => {
             headers: {
                 'content-type': 'application/json'
             },
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
+    const handleUpdateData = (e, id) => {
+        e.preventDefault()
+        const updatedTask = e.target.updatedTask.value
+        console.log(updatedTask, id)
+        fetch(`http://localhost:5000/updatedTask/${id}`, {
+            method: 'put',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ updatedTask: updatedTask })
         })
             .then(res => res.json())
             .then(data => {
@@ -53,15 +70,15 @@ const ToDo = () => {
                                     </div>
                                 </a>
                             </div>
-                            <button onClick="popuphandler(true)" className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-                                <p className="text-sm font-medium leading-none text-white">Add Task</p>
+                            <button className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+                                <Link to={'/'} as='p' className="text-sm font-medium leading-none text-white">Add Task</Link>
                             </button>
                         </div>
                         <div className="mt-7 overflow-x-auto">
                             <table className="w-full whitespace-nowrap">
                                 <tbody>
                                     {
-                                        tasks.map((task, index) => <tr key={index} className="h-16 border border-gray-100 rounded">
+                                        tasks?.map((task, index) => task.completed !== true && <tr key={index} className="h-16 border border-gray-100 rounded">
                                             <td>
                                                 <div className="ml-5">
                                                     <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
@@ -87,14 +104,14 @@ const ToDo = () => {
                                                         </div>
                                                     )}
                                                     {show === index && (
-                                                        <div className="dropdown-content bg-white shadow w-full absolute z-30 right-0 mr-6 ">
+                                                        <form onSubmit={(e) => handleUpdateData(e, task._id)} className="dropdown-content bg-white shadow w-full absolute z-30 right-0 mr-6 ">
                                                             <div className="text-xs w-full py-4 px-4 cursor-pointer hover:text-white">
-                                                                <input aria-label="task" name='task' type="text" placeholder='Update Task' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                                                <input aria-label="task" defaultValue={task.inputValue} name='updatedTask' type="text" placeholder='Update Task' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                                             </div>
-                                                            <div className="text-sm w-full cursor-pointer hover:text-white">
-                                                                <p className='hover:bg-indigo-700 bg-gray-300 py-3 mx-4 rounded '>Update</p>
+                                                            <div className="text-sm cursor-pointer hover:text-white">
+                                                                <input type={'submit'} value='Update' className='hover:bg-indigo-700 bg-gray-300 w-full py-3 mx-4 rounded ' />
                                                             </div>
-                                                        </div>
+                                                        </form>
                                                     )}
                                                 </div>
                                             </td>

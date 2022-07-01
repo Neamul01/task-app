@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const CompletedTasks = () => {
-    const [show, setShow] = useState(null);
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/tasks')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setTasks(data)
             })
     }, [])
@@ -38,19 +37,19 @@ const CompletedTasks = () => {
                                     </div>
                                 </a>
                             </div>
-                            <button onClick="popuphandler(true)" className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-                                <p className="text-sm font-medium leading-none text-white">Add Task</p>
+                            <button className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+                                <Link to={'/'} as='p' className="text-sm font-medium leading-none text-white">Add Task</Link>
                             </button>
                         </div>
                         <div className="mt-7 overflow-x-auto">
                             <table className="w-full whitespace-nowrap">
                                 <tbody>
                                     {
-                                        tasks.map((task, index) => <tr key={index} className="h-16 border border-gray-100 rounded">
+                                        tasks.map((task, index) => task.completed === true && <tr key={index} className="h-16 border border-gray-100 rounded">
                                             <td>
                                                 <div className="ml-5">
                                                     <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                                                        <input checked={task.completed} type="checkbox" className=" w-full h-full" />
+                                                        <input checked={task.completed} disabled type="checkbox" className=" w-full h-full" />
                                                     </div>
                                                 </div>
                                             </td>
@@ -62,25 +61,9 @@ const CompletedTasks = () => {
                                             </td>
                                             <td>
                                                 <div className="relative px-5 pt-2">
-                                                    {show === index ? (
-                                                        <div className="focus:outline-none" onClick={() => setShow(null)}>
-                                                            <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                        </div>
-                                                    ) : (
-                                                        <div className="focus:outline-none" onClick={() => setShow(index)}>
-                                                            <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Edit</button>
-                                                        </div>
-                                                    )}
-                                                    {show === index && (
-                                                        <div className="dropdown-content bg-white shadow w-full absolute z-30 right-0 mr-6 ">
-                                                            <div className="text-xs w-full py-4 px-4 cursor-pointer hover:text-white">
-                                                                <input aria-label="task" name='task' type="text" placeholder='Update Task' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
-                                                            </div>
-                                                            <div className="text-sm w-full cursor-pointer hover:text-white">
-                                                                <p className='hover:bg-indigo-700 bg-gray-300 py-3 mx-4 rounded '>Update</p>
-                                                            </div>
-                                                        </div>
-                                                    )}
+                                                    <div className="focus:outline-none">
+                                                        <button className="text-sm leading-none text-gray-700 font-semibold py-3 px-5 bg-red-500 rounded hover:bg-red-600 focus:outline-none">Delete</button>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>)

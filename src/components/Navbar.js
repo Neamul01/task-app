@@ -80,13 +80,13 @@ const Navbar = () => {
                                                 </div>
                                             </li>
                                         </ul>
-                                        <svg onClick="MenuHandler(this,true)" aria-haspopup="true" aria-label="Main Menu" xmlns="http://www.w3.org/2000/svg" className="show-m-menu icon icon-tabler icon-tabler-menu" width={28} height={28} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        <svg aria-haspopup="true" aria-label="Main Menu" xmlns="http://www.w3.org/2000/svg" className="show-m-menu icon icon-tabler icon-tabler-menu" width={28} height={28} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" />
                                             <line x1={4} y1={8} x2={20} y2={8} />
                                             <line x1={4} y1={16} x2={20} y2={16} />
                                         </svg>
                                     </div>
-                                    <div className="hidden close-m-menu text-gray-700" onClick="MenuHandler(this,false)">
+                                    <div className="hidden close-m-menu text-gray-700">
                                         <svg aria-label="Close" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" />
                                             <line x1={18} y1={6} x2={6} y2={18} />

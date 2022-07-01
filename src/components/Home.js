@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 const Home = () => {
-    const [sidebar, setsidebar] = useState();
     const [tasks, setTasks] = useState([]);
 
     const handleSubmit = (e) => {
@@ -24,7 +23,6 @@ const Home = () => {
         fetch('http://localhost:5000/tasks')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setTasks(data)
             })
     }, [])
